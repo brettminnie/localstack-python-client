@@ -38,3 +38,15 @@ def get_service_endpoints(localstack_host=None):
 
     return json.loads(json.dumps(_service_endpoints_template)
         .replace('{proto}', protocol).replace('{host}', localstack_host))
+
+def get_service_port(service):
+    ports = get_service_ports()
+    return ports.get(service)
+
+
+def get_service_ports():
+    endpoints = get_service_endpoints()
+    result = {}
+    for service, url in endpoints.items():
+        result[service] = urlparse(url).port
+    return result
