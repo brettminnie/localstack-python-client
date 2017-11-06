@@ -1,5 +1,6 @@
 import os
 import json
+from six.moves.urllib.parse import urlparse
 
 _service_endpoints_template = {
     'apigateway': '{proto}://{host}:4567',
